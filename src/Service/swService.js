@@ -39,14 +39,30 @@ export default class SwService {
         return this._transformPlanet(planet).then(item => {return item});
     }
 
-    _getResidents = (planet) => {
-        const pla = planet.map(async (item) => {
-            const label = await (await fetch(item)).json();
-            console.log(await label.name);
-            return await label.name;
+    // _getResidents = async (url) => {
+    //     const planet = await (await fetch(url)).json()
+    //     const res = planet.residents.map((item) => {
+    //         return (
+    //             <span>{item}</span>
+    //         )
+    //     });
+    //     console.log(res);
+    //     return res;
+    // } 
+
+    _getResidents = async (url) => {
+        const planet = await (await fetch(url)).json();
+        const res = planet.residents.map(async (item) => {
+            const link = await (await fetch(item)).json();
+            console.log(link);
+            const res = this._transformChar(link);
+
+            return res.name;
         });
+
+        Promise.all(res).then(item => console.log(item));
         
-        return Promise.all(pla).then(async (item) => await item);
+        return Promise.all(res).then(item => item);
     } 
 
     _getId = (item) => {
@@ -64,9 +80,8 @@ export default class SwService {
     }
 
     _transformPlanet = async (planet) => {
-        const res = await this._getResidents(planet.residents).then(item => {return <span>{item.join(', ')}</span>})
+        // const res = await this._getResidents(planet.residents).then(item => {return item.join(', ')});
         
-        console.log(res);
         const res1 = {
             id: this._getId(planet),
             name: this._isData(planet.name),
@@ -75,7 +90,7 @@ export default class SwService {
             diameter: this._isData(planet.diameter),
             orbital_period: this._isData(planet.orbital_period),
             gravity: this._isData(planet.gravity),
-            residents: res
+            url: planet.url
         }
 
         return await res1;

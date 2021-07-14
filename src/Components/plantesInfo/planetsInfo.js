@@ -6,7 +6,7 @@ const PlanetDetail = styled.div`
     padding: 25px 25px 15px 25px;
     margin: 40px 400px;
     width: 600px;
-    height: 400px;
+    height: 600px;
 `;
 
 const Head = styled.h4`

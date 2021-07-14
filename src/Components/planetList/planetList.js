@@ -20,14 +20,14 @@ const PlanetsList = styled.li`
     font-size: 30px;
 `;
 
-function PlanetList({ getData, onPlanetSelected }) {
+function PlanetList({ getData, onPlanetSelected, onResidentsSelected }) {
     
     const [planetList, updateList] = useState([]);
 
     const swService = new SwService();
 
     useEffect(() => {
-        getData('1')
+        getData(1)
             .then(data => {
                 updateList(data);
             })
@@ -43,14 +43,17 @@ function PlanetList({ getData, onPlanetSelected }) {
 
     function renderItems(arr) {
         return arr.map((item) => {
-            const {id, climate, population} = item;
+            const {id, climate, population, url} = item;
             const label = item.name;
 
             return (
                 <PlanetsList 
                     key={id}
                     className="list-group-item"
-                    onClick={() => onPlanetSelected(id)}>
+                    onClick={() => {
+                        onPlanetSelected(id);
+                        onResidentsSelected(url);
+                        }}>
                         {label}
                         <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo>
                 </PlanetsList>

@@ -2,27 +2,44 @@ import React, { useState, useEffect } from 'react';
 import SwService from '../../Service/swService';
 import PlanetsInfo, {Field} from '../plantesInfo/planetsInfo';
 import PlanetList from '../planetList';
+import ResidentsList from '../residentsList';
 import RowBlock from '../rowBlock/rowBlock';
 
 function PlanetsPage() {
 
     const [planetSelected, updatePlanetSelected] = useState(Number);
+    const [planetData, updatePlanetData] = useState([]);
 
     const swService = new SwService();
 
     useEffect(() => {
         onPlanetSelected();
-    })
+    }, []);
+
+    useEffect(() => {
+        onResidentsSelected();
+    }, []);
 
     function onPlanetSelected(id) {
         updatePlanetSelected(id);
+
     }
 
-    const planetsTable = (
+    function onResidentsSelected(url) {
+        if (url === null) {
+            return
+        }
+        updatePlanetData(url);
+    }
+
+    console.log(planetData);
+
+    const planetList = (
             <PlanetList 
                 className="item-list list-group"
                 getData={swService.getAllPlanets}
-                onPlanetSelected={onPlanetSelected}>
+                onPlanetSelected={onPlanetSelected}
+                onResidentsSelected={onResidentsSelected}>
             </PlanetList>
 
     )
@@ -36,12 +53,14 @@ function PlanetsPage() {
                 <Field field='diameter' label='Diameter: ' />
                 <Field field='gravity' label='Gravity: ' />                
                 <Field field='orbital_period' label='Orbital period: ' />
-                <Field field='residents' label='Residents: ' />
+                <ResidentsList 
+                getData={swService._getResidents}
+                planetData={planetData} />
         </PlanetsInfo>
     )
     
     return (
-        <RowBlock left={planetsTable} right={planetsInfo} />
+        <RowBlock left={planetList} right={planetsInfo} />
     )
 }
 
