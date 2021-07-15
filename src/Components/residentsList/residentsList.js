@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Resident = styled.li`
+const ResidentsTable = styled.ul`
+    display: inline-block;
     width: 100%;
+    box-sizing: border-box;
 `;
 
-const ResidentsTable = styled.ul`
-    display: block;
-    margin-left: auto;
-    width: 600px;
-    height: 100%;
+const Resident = styled.li`
+    float: right;
+    clear: right;
+    list-style-type: none;
+    cursor: pointer;
 `;
+
+const Label = styled.span`
+    margin: 0 15px;
+`;
+
+
 
 function ResidentsList({ planetData, getData }) {
 
@@ -19,10 +27,7 @@ function ResidentsList({ planetData, getData }) {
 
     useEffect(() => {
         getRes();
-    }, [residents]);
-    
-    console.log(planetData);
-    console.log(residents);
+    }, [getData]);
 
     function getRes() {
         
@@ -43,9 +48,12 @@ function ResidentsList({ planetData, getData }) {
         }
         
         const res = names.map(item => {
+            const {name, id} = item;
             return (                
-                <Resident className='d-flex justify-content-between'>
-                    <span>{item}</span>
+                <Resident
+                key={id}
+                className='justify-content-between'>
+                    {name}
                 </Resident>
             )
         });
@@ -58,8 +66,8 @@ function ResidentsList({ planetData, getData }) {
     console.log(res);
 
     return(
-        <ResidentsTable>
-            <span className="term">Residents:</span>
+        <ResidentsTable className='item-list list-group'>
+            <Label className="term">Residents:</Label>
             {res}
         </ResidentsTable>
     ); 

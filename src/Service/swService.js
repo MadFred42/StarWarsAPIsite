@@ -31,7 +31,7 @@ export default class SwService {
 
     getCharacter = async (id) => {
         const pers = await this.getResource(`people/${id}/`);
-        return await this._transformChar(pers)
+        return this._transformChar(pers)
     }
 
     getPlanet = async (id) => {
@@ -39,28 +39,15 @@ export default class SwService {
         return this._transformPlanet(planet).then(item => {return item});
     }
 
-    // _getResidents = async (url) => {
-    //     const planet = await (await fetch(url)).json()
-    //     const res = planet.residents.map((item) => {
-    //         return (
-    //             <span>{item}</span>
-    //         )
-    //     });
-    //     console.log(res);
-    //     return res;
-    // } 
-
-    _getResidents = async (url) => {
+    getResidents = async (url) => {
         const planet = await (await fetch(url)).json();
         const res = planet.residents.map(async (item) => {
             const link = await (await fetch(item)).json();
-            console.log(link);
+            
             const res = this._transformChar(link);
-
-            return res.name;
+            console.log(res);
+            return res;
         });
-
-        Promise.all(res).then(item => console.log(item));
         
         return Promise.all(res).then(item => item);
     } 
@@ -80,9 +67,8 @@ export default class SwService {
     }
 
     _transformPlanet = async (planet) => {
-        // const res = await this._getResidents(planet.residents).then(item => {return item.join(', ')});
         
-        const res1 = {
+        return {
             id: this._getId(planet),
             name: this._isData(planet.name),
             climate: this._isData(planet.climate),
@@ -92,8 +78,6 @@ export default class SwService {
             gravity: this._isData(planet.gravity),
             url: planet.url
         }
-
-        return await res1;
     }
 
     _transformChar = (char) => {
@@ -102,6 +86,7 @@ export default class SwService {
             name: char.name,
             birth_year: char.birth_year,
             gender: char.gender,
+            hair_color: char.hair_color,
             height: char.height,
             skin_color: char.skin_color
         }

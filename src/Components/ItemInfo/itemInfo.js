@@ -40,7 +40,7 @@ const Field = ({newId, field, label}) => {
 
 export {Field};
 
-function PlanetsInfo ({ getData, itemId, children }) {
+function ItemInfo ({ getData, itemId, children }) {
     const [newId, updateId] = useState([]);
 
     useEffect(() => {
@@ -78,4 +78,4 @@ function PlanetsInfo ({ getData, itemId, children }) {
     )
 }
 
-export default PlanetsInfo;
+export default ItemInfo;

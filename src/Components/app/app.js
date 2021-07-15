@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { PlanetsPage } from '../pages';
+import { CharPage, PlanetsPage } from '../pages';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const AppBody = styled.div`
     width: 35%;
@@ -14,11 +15,19 @@ const AppBody = styled.div`
 function App() {
 
     return (
-        <AppBody>
-            <Container>
-                <PlanetsPage />
-            </Container>
-        </AppBody>
+        <Router>    
+            <AppBody>
+                <Container>
+                    <Route path='/' exact component={PlanetsPage} />
+                    <Route path ='/characters/:id' render={
+                        ({match}) => {
+                            const {id} = match.params;
+                            return <CharPage charId={id}/>
+                        }
+                    } />
+                </Container>
+            </AppBody>
+        </Router>
     )
 }
 

@@ -61,8 +61,6 @@ function PlanetList({ getData, onPlanetSelected, onResidentsSelected }) {
         })
     }
 
-    console.log(planetList);
-
     const items = renderItems(planetList);
     const spinner = planetList.length === 0 ? <Spinner /> : null;
 
