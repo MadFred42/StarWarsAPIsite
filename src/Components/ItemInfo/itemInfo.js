@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ResidentsList from '../residentsList';
+import SwService from '../../Service/swService';
 import styled from 'styled-components';
 
 const PlanetDetail = styled.div`
@@ -29,7 +31,7 @@ const Info = styled.li`
     width: 100%;
 `;
 
-const Field = ({newId, field, label}) => {
+const Field = ({newId, field, label }) => {
     return (
         <Info className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
@@ -40,9 +42,12 @@ const Field = ({newId, field, label}) => {
 
 export {Field};
 
-function ItemInfo ({ getData, itemId, children }) {
+function ItemInfo ({ getData, itemId, children, history }) {
+    // debugger
     const [newId, updateId] = useState([]);
 
+    const swService = new SwService();
+    console.log(history);
     useEffect(() => {
         updatePlanet();
     }, [itemId]);
@@ -58,12 +63,8 @@ function ItemInfo ({ getData, itemId, children }) {
             })
     }
 
-    if (newId.length === 0) {
-        return <Err>Please select palnet in the list</Err>
-    }
-
     const {name} = newId;
-
+    
     return (
         <PlanetDetail className="rounded">
             <Head>{name}</Head>

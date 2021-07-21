@@ -1,7 +1,11 @@
-import PlanetsPage from './planetsPage';
+import MainPage from './mainPage';
+import PlanetPage from './planetPage';
 import CharPage from './charPage';
+import PlanetInfo from './planetInfo';
 
 export {
-    PlanetsPage,
+    MainPage,
+    PlanetPage,
+    PlanetInfo,
     CharPage
 };

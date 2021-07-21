@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { CharPage, PlanetsPage } from '../pages';
+import { MainPage, PlanetPage, PlanetInfo } from '../pages';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -18,13 +18,17 @@ function App() {
         <Router>    
             <AppBody>
                 <Container>
-                    <Route path='/' exact component={PlanetsPage} />
-                    <Route path ='/characters/:id' render={
-                        ({match}) => {
-                            const {id} = match.params;
-                            return <CharPage charId={id}/>
-                        }
-                    } />
+                    <Switch>
+                        <Route path='/' exact component={MainPage} />
+                        <Route path ='/planets/' component={PlanetPage} />
+                        <Route path ='/planets/:id' render={
+                            ({match}) => {
+                                const {id} = match.params;
+                                console.log(id);
+                                return <PlanetInfo planetId={id} />
+                            }
+                        } />
+                    </Switch>
                 </Container>
             </AppBody>
         </Router>

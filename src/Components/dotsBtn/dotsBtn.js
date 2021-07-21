@@ -26,7 +26,7 @@ function DotsBtn({ getData, changePage }) {
             .then(data => {
                 updatePage(data);
             });
-    }, [getData]);
+    }, []);
 
 
     function btns(num) {

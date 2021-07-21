@@ -26,6 +26,7 @@ export default class SwService {
             if (link.next === null) break; 
             i++;
         }    
+        
         return i;
     }
 
@@ -36,11 +37,12 @@ export default class SwService {
 
     getPlanet = async (id) => {
         const planet = await this.getResource(`planets/${id}/`);
-        return this._transformPlanet(planet).then(item => {return item});
+        console.log(planet);
+        return this._transformPlanet(planet);
     }
 
-    getResidents = async (url) => {
-        const planet = await (await fetch(url)).json();
+    getResidents = async (id) => {
+        const planet = await (await fetch(`${this._apiBase}planets/${id}`)).json();
         const res = planet.residents.map(async (item) => {
             const link = await (await fetch(item)).json();
             
