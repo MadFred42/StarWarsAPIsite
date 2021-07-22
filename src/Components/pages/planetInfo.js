@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ItemInfo, { Field } from '../ItemInfo/itemInfo';
+import { Link } from 'react-router-dom';
 import SwService from '../../Service/swService';
 
 function PlanetInfo({ planetId }) {
     const swService = new SwService();
-    const [id, updateId] = useState(Number);
     console.log(planetId);
-    useEffect(() => {
-        updateId(planetId);
-    }, []);
-    
     return (
         <ItemInfo
-        itemId={id}
-        getData={swService.getPlanet}>
-            <Field field='name' label='Name' />
-            <Field field='diameter' label='Diameter' />
-            <Field field='gravity' label='Gravity' />
-            <Field field='population' label='Population' />
-            <Field field='climate' label='Climate' />
+            itemId={planetId}
+            getData={swService.getPlanet}>
+                <Field field='name' label='Name' />
+                <Field field='diameter' label='Diameter' />
+                <Field field='gravity' label='Gravity' />
+                <Field field='population' label='Population' />
+                <Field field='climate' label='Climate' />
+                <Link to='/'></Link>
         </ItemInfo>
     )
 }

@@ -21,7 +21,7 @@ const PlanetsList = styled.li`
     font-size: 30px;
 `;
 
-function ItemList({ getData, onPlanetSelected }) {
+function ItemList({ getData }) {
     
     const [planetList, updateList] = useState([]);
 
@@ -61,7 +61,8 @@ function ItemList({ getData, onPlanetSelected }) {
                 <PlanetsList 
                     key={id}
                     className="list-group-item"
-                    onClick={() => onPlanetSelected(id)}>
+                    // onClick={() => onPlanetSelected(id)}
+                    >
                         <Link to={`/planets/${id}`}>{label}</Link>
                         <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo>
                 </PlanetsList>

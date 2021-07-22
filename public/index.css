@@ -5,7 +5,7 @@
     outline: none;
 }
 body {
-    overflow-x: hidden;
+    overflow: visible;
     background: url('img/star-wars.jpg') center center no-repeat;
     background-size: cover;
     font-size: 16px;

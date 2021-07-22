@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import ResidentsList from '../residentsList';
-import SwService from '../../Service/swService';
+// import ResidentsList from '../residentsList';
 import styled from 'styled-components';
 
 const PlanetDetail = styled.div`
+    align-self: center;
     background-color: #fff;
     padding: 25px 25px 15px 25px;
-    margin: 40px 400px;
+    margin: auto;
     width: 600px;
     height: 600px;
 `;
@@ -42,12 +42,10 @@ const Field = ({newId, field, label }) => {
 
 export {Field};
 
-function ItemInfo ({ getData, itemId, children, history }) {
-    // debugger
+function ItemInfo ({ getData, itemId, children }) {
+    
     const [newId, updateId] = useState([]);
 
-    const swService = new SwService();
-    console.log(history);
     useEffect(() => {
         updatePlanet();
     }, [itemId]);
