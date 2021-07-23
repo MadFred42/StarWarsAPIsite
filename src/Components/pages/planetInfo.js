@@ -1,7 +1,8 @@
 import React from 'react';
 import ItemInfo, { Field } from '../ItemInfo/itemInfo';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SwService from '../../Service/swService';
+
 
 function PlanetInfo({ planetId }) {
     const swService = new SwService();
@@ -15,7 +16,18 @@ function PlanetInfo({ planetId }) {
                 <Field field='gravity' label='Gravity' />
                 <Field field='population' label='Population' />
                 <Field field='climate' label='Climate' />
-                <Link to='/'></Link>
+                <button className='btn btn-primary' style={{margin:'5% auto'}}>
+                    <NavLink 
+                        style={{textDecoration:'none', fontWeight: "bold", color: 'white'}} 
+                        to='/residents/'>
+                            Residents</NavLink>
+                </button>
+                <button className='btn btn-danger' style={{margin:'30% auto'}}>   
+                    <NavLink 
+                        style={{textDecoration:'none', fontWeight: "bold", color: 'white'}} 
+                        to='/planets/'>
+                            Back</NavLink>
+                </button>
         </ItemInfo>
     )
 }

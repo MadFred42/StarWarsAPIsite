@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import DotsBtn from '../dotsBtn/dotsBtn';
 import Spinner from '../spinner';
 import styled from 'styled-components';
@@ -40,7 +40,7 @@ function ItemList({ getData }) {
 
     function changePage(id) {
 
-        if (!id) {
+        if (!id || getData === swService.getResidents) {
             return
         }
 
@@ -54,32 +54,32 @@ function ItemList({ getData }) {
 
     function renderItems(arr) {
         return arr.map((item) => {
-            const {id, climate, population} = item;
+            const {id, climate, population, gender} = item;
             const label = item.name;
+
+            const itemDetails = !gender ? <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo> : <PlanetInfo>Gender: {gender}</PlanetInfo>
 
             return (
                 <PlanetsList 
                     key={id}
                     className="list-group-item"
-                    // onClick={() => onPlanetSelected(id)}
                     >
-                        <Link to={`/planets/${id}`}>{label}</Link>
-                        <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo>
+                        <NavLink style={{textDecoration:'none', color:'tomato'}} to={`/planets/${id}`}>{label}</NavLink>
+                        {itemDetails}
                 </PlanetsList>
             )
-        })
+        })  
     }
-
+    console.log(typeof(getData));
     const items = renderItems(planetList);
     const spinner = planetList.length === 0 ? <Spinner /> : null;
+    const dots = getData === !swService.getResidents ? <DotsBtn getData={swService.getAllPages} changePage={changePage} /> : null;
 
     return (
         <PlanetsTable className="item-list list-group">
             {spinner}
             {items}
-            <DotsBtn 
-                getData={swService.getAllPages}
-                changePage={changePage} />
+            {dots}
         </PlanetsTable>
     )
 }

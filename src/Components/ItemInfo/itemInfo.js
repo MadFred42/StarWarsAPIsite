@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import ResidentsList from '../residentsList';
+import Spinner from '../spinner';
 import styled from 'styled-components';
 
 const PlanetDetail = styled.div`
@@ -62,9 +62,13 @@ function ItemInfo ({ getData, itemId, children }) {
     }
 
     const {name} = newId;
-    
+    console.log(newId);
+    const content = newId.length === 0 ? <Spinner/> : null
+
     return (
+        
         <PlanetDetail className="rounded">
+            {content}
             <Head>{name}</Head>
             <ul className="list-group list-group-flush">
                 {

@@ -50,7 +50,7 @@ export default class SwService {
             console.log(res);
             return res;
         });
-        
+        Promise.all(res).then(item => console.log(item));
         return Promise.all(res).then(item => item);
     } 
 

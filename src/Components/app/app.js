@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import { MainPage, PlanetPage, PlanetInfo } from '../pages';
+import { MainPage, PlanetPage, PlanetInfo, CharPage } from '../pages';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -25,6 +25,7 @@ function App() {
                             return <PlanetInfo planetId={id} />
                         }
                     } />
+                    <Route path='/residents/' exact component={CharPage} />
                 </Switch>
             </AppBody>
         </Router>
