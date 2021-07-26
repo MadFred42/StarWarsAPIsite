@@ -11,9 +11,9 @@ const Body = styled.div`
 const Dots = styled.div`
     width: 15px;
     height: 15px;   
-    border-radius: 50%;
-    background-color: white;
     margin: auto;
+    border-radius: 50%;
+    background-color: tomato;
     cursor: pointer;
 `;
 

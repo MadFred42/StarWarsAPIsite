@@ -54,6 +54,11 @@ export default class SwService {
         return Promise.all(res).then(item => item);
     } 
 
+    getImage = async (name) => {
+        const img = await fetch(`../img/${name}`);
+        return img;
+    }    
+
     _getId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
@@ -89,7 +94,9 @@ export default class SwService {
             birth_year: char.birth_year,
             gender: char.gender,
             hair_color: char.hair_color,
+            eye_color: char.eye_color,
             height: char.height,
+            mass: char.mass,
             skin_color: char.skin_color
         }
     }

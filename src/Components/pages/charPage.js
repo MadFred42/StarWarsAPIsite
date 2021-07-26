@@ -6,8 +6,10 @@ function CharPage() {
     const swService = new SwService();
 
     return (
-        <ItemList 
-        getData={swService.getResidents} />
+        <>
+            <ItemList 
+            getData={swService.getResidents} />
+        </>
     )
 }
 

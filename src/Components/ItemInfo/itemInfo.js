@@ -16,27 +16,12 @@ const Head = styled.h4`
     text-align: center;
 `;
 
-const Err = styled.span`
-    display: block;
-    width: 400px;
-    color: black;
-    background-color: white;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 26px;
-    margin: 40px 400px;
-`;
-
-const Info = styled.li`
-    width: 100%;
-`;
-
 const Field = ({newId, field, label }) => {
     return (
-        <Info className="list-group-item d-flex justify-content-between">
+        <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
             <span>{newId[field]}</span>
-        </Info>
+        </li>
     )
 }
 

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container } from 'reactstrap';
-import { MainPage, PlanetPage, PlanetInfo, CharPage } from '../pages';
+import { MainPage, PlanetPage, PlanetInfo, CharPage, CharInfo } from '../pages';
 import styled from 'styled-components';
+import img from './star-wars.jpg';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const AppBody = styled.div`
-    width: 35%;
-    border-radius: 15%;
-    margin: 1% auto;
+    background: url(${img}) center center no-repeat;
+    background-size: cover;
+    height: 1000px;
 `;
 
 function App() {
@@ -21,11 +21,16 @@ function App() {
                     <Route path ='/planets/:id' render={
                         ({match}) => {
                             const {id} = match.params;
-                            console.log(id);
                             return <PlanetInfo planetId={id} />
                         }
                     } />
                     <Route path='/residents/' exact component={CharPage} />
+                    <Route path='/residents/:id' render={
+                        ({match}) => {
+                            const {id} = match.params;
+                            return <CharInfo charId={id} />
+                        }
+                    } />
                 </Switch>
             </AppBody>
         </Router>

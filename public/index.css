@@ -6,8 +6,4 @@
 }
 body {
     overflow: visible;
-    background: url('img/star-wars.jpg') center center no-repeat;
-    background-size: cover;
-    font-size: 16px;
-    height: 1000%;	
 }
