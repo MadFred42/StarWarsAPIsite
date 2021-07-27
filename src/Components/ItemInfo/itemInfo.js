@@ -16,11 +16,11 @@ const Head = styled.h4`
     text-align: center;
 `;
 
-const Field = ({newId, field, label }) => {
+const Field = ({planet, field, label }) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
-            <span>{newId[field]}</span>
+            <span>{planet[field]}</span>
         </li>
     )
 }
@@ -29,7 +29,7 @@ export {Field};
 
 function ItemInfo ({ getData, itemId, children }) {
     
-    const [newId, updateId] = useState([]);
+    const [planet, getPlanet] = useState([]);
 
     useEffect(() => {
         updatePlanet();
@@ -42,13 +42,12 @@ function ItemInfo ({ getData, itemId, children }) {
 
         getData(itemId)
             .then(item => {
-                updateId(item);
+                getPlanet(item);
             })
     }
 
-    const {name} = newId;
-    console.log(newId);
-    const content = newId.length === 0 ? <Spinner/> : null
+    const {name} = planet;
+    const content = planet.length === 0 ? <Spinner/> : null
 
     return (
         
@@ -58,7 +57,7 @@ function ItemInfo ({ getData, itemId, children }) {
             <ul className="list-group list-group-flush">
                 {
                     React.Children.map(children, (child) => {
-                        return React.cloneElement(child, {newId});
+                        return React.cloneElement(child, {planet});
                     })
                 }
             </ul>

@@ -16,8 +16,8 @@ function PlanetInfo({ planetId }) {
                 <Field field='gravity' label='Gravity' />
                 <Field field='population' label='Population' />
                 <Field field='climate' label='Climate' />
-                <a href='/residents/' className='btn btn-primary'>Residents</a>
-                <BackButton link='/planets' props="30%"/>
+                <a href={`/residents/`} className='btn btn-primary'>Residents</a>
+                <BackButton link='/planets' props={{margin: "30%"}} />
         </ItemInfo>
     )
 }

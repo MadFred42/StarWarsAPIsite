@@ -17,7 +17,7 @@ function CharInfo({ charId }) {
             <Field field='gender' label='Gender' />
             <Field field='hair_color' label='Hair color' />
             <Field field='skin_color' label='Skin color' />
-            <BackButton link='/residents/' props='30%' />
+            <BackButton link='/residents/' props={{margin: "30%"}} />
         </ItemInfo>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import SwService from '../../Service/swService';
 import ItemList from '../itemList/itemList';
 
@@ -8,7 +8,8 @@ function PlanetPage() {
     return (
         <ItemList 
             className="item-list list-group"
-            getData={swService.getAllPlanets} />
+            getData={swService.getAllPlanets}
+            id={1} />
     )
 }
 

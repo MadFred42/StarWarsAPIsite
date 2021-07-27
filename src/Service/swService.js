@@ -37,20 +37,20 @@ export default class SwService {
 
     getPlanet = async (id) => {
         const planet = await this.getResource(`planets/${id}/`);
-        console.log(planet);
         return this._transformPlanet(planet);
     }
 
     getResidents = async (id) => {
+        console.log(id);
         const planet = await (await fetch(`${this._apiBase}planets/${id}`)).json();
         const res = planet.residents.map(async (item) => {
             const link = await (await fetch(item)).json();
             
             const res = this._transformChar(link);
-            console.log(res);
+            
             return res;
         });
-        Promise.all(res).then(item => console.log(item));
+        
         return Promise.all(res).then(item => item);
     } 
 
