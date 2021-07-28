@@ -18,19 +18,14 @@ function App() {
                 <Switch>
                     <Route path='/' exact component={MainPage} />
                     <Route path ='/planets/' exact component={PlanetPage} />
-                    <Route path ='/planets/:id' render={
+                    <Route path ='/planets/:id' exact render={
                         ({match}) => {
-                            const {id} = match.params;
+                            const { id } = match.params;
                             return <PlanetInfo planetId={id} />
                         }
                     } />
-                    <Route path='/residents/' exact component={CharPage} />
-                    <Route path='/residents/:id' render={
-                        ({match}) => {
-                            const {id} = match.params;
-                            return <CharInfo charId={id} />
-                        }
-                    } />
+                    <Route path='/planets/:planetId/residents'  exact component={CharPage}/>
+                    <Route path='/planets/:planetId/residents/:charId' component={CharInfo} />
                 </Switch>
             </AppBody>
         </Router>
@@ -38,3 +33,11 @@ function App() {
 }
 
 export default App;
+
+
+// render={
+//     ({match}) => {
+//         const { id } = match.params;
+//         return <CharInfo charId={id} />
+//     }
+// }

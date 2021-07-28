@@ -8,8 +8,6 @@ const FilterBtn = styled.button`
 `;
 
 function FilterItems({ filter, onUpdateFilter }) {
-
-    console.log(filter);
     
     const buttons = [
         {name: 'all', label: 'All'},

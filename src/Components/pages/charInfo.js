@@ -1,11 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import SwService from '../../Service/swService';
 import BackButton from '../backButton/backButton';
 import ItemInfo, { Field } from '../ItemInfo';
 
-function CharInfo({ charId }) {
+function CharInfo({ history, match  }) {
     const swService = new SwService();
-
+    const {charId} = match.params;
+    const {pathname} = history.location.prevPath;
+    
     return (
         <ItemInfo
         getData={swService.getCharacter}
@@ -17,9 +20,9 @@ function CharInfo({ charId }) {
             <Field field='gender' label='Gender' />
             <Field field='hair_color' label='Hair color' />
             <Field field='skin_color' label='Skin color' />
-            <BackButton link='/residents/' props={{margin: "30%"}} />
+            <BackButton link={`${pathname}`} props={{margin: "30%"}} />
         </ItemInfo>
     )
 }
 
-export default CharInfo;
+export default withRouter(CharInfo);

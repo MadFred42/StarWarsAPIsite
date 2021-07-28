@@ -9,7 +9,7 @@ function PlanetPage() {
         <ItemList 
             className="item-list list-group"
             getData={swService.getAllPlanets}
-            id={1} />
+            onItemSelected={1} />
     )
 }
 

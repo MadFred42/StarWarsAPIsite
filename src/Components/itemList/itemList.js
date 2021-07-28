@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import SwService from '../../Service/swService';
 import BackButton from '../backButton/backButton';
 import FilterItems from '../filterItems';
+import { Link, useLocation } from 'react-router-dom';
 
 const PlanetsTable = styled.ul`
     height: 100%;
@@ -23,15 +24,15 @@ const PlanetsList = styled.li`
     font-size: 30px;
 `;
 
-function ItemList({ getData, getId, id }) {
-    console.log(id);
+function ItemList({ getData, onItemSelected }) {
+    
     const [itemList, updateList] = useState([]);
     const [filter, updateFilter] = useState('all');
     
     const swService = new SwService();
 
     useEffect(() => {
-        getData(id)
+        getData(onItemSelected)
             .then(data => {
                 updateList(data);
             })
@@ -43,6 +44,8 @@ function ItemList({ getData, getId, id }) {
         onUpdateFilter();
     }, [])
 
+    const location = useLocation();
+    console.log(location);
     function changePage(id) {
 
         if (!id || getData === swService.getResidents) {
@@ -80,18 +83,20 @@ function ItemList({ getData, getId, id }) {
             const planetShortInfo = <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo>;
             const charShortInfo = <PlanetInfo>Gender: {gender}</PlanetInfo>
             const itemDetails = !gender ? planetShortInfo : charShortInfo;
-            const url = !gender ? '/planets/' : '/residents/'
+            const url = !gender ? '/planets/' : `/planets/${id}/residents/`
             
             return (
                 <PlanetsList 
                     key={id}
-                    className="list-group-item"
-                    onClick={() => getId(id)}>  
-                        <a
-                            href={`${url}${id}`} 
+                    className="list-group-item">  
+                        <Link
+                            to={{
+                                pathname: `${url}${id}`,
+                                prevPath: location   
+                            }} 
                             className='btn' 
                             style={{color: 'tomato', fontSize: '25px'}}>
-                                {label}</a>   
+                                {label}</Link>   
                         {itemDetails}
                 </PlanetsList>
             )
@@ -125,7 +130,7 @@ function ItemList({ getData, getId, id }) {
                 <BackButton 
                     link='/planets' 
                     props={{position: 'relative', top: '-900px', left: '670px'}} />;
-
+    console.log(onItemSelected);
     return (
         <>
             <PlanetsTable className="item-list list-group">

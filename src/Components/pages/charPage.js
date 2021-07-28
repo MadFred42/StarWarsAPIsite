@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ItemList from '../itemList/itemList';
 import SwService from '../../Service/swService';
+import { withRouter } from 'react-router-dom';
 
-function CharPage() {
+function CharPage({match}) {
     const swService = new SwService();
-
-    const [id, updateId] = useState(1);
     
-    useState(() => {
-        getId();
-    }, [id])
-
-    function getId(id) {
-        updateId(id)
-    }
-
+    const {planetId} = match.params;
     return (
-        <ItemList 
-        getData={swService.getResidents}
-        getId={getId}
-        id={id} />
+        <ItemList
+            getData={swService.getResidents}
+            onItemSelected={planetId} />
     )
 }
 
-export default CharPage;
+export default withRouter(CharPage);
