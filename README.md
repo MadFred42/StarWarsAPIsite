@@ -3,7 +3,7 @@
 # This SPA was created with React.js using Star Wars API.
 ### https://swapi.dev/
 
-## There's a sneak preview to this tremendous project.
+## Here is a sneak preview to this tremendous project.
 ![alt text](screenshots/site.jpg "SneakPreview")
 ![alt text](screenshots/site_planet.jpg "SneakPreview")
 ![alt text](screenshots/site_chars.jpg "SneakPreview")
