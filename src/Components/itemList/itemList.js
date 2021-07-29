@@ -77,7 +77,7 @@ function ItemList({ getData, onItemSelected }) {
     // рендер персонажей на страницу
     function renderItems(arr) {
         return arr.map((item) => {
-            const {id, climate, population, gender} = item;
+            const {id, climate, population, gender} = item;      
             const label = item.name;
             // при условии полученных данных, планеты или персонади, будет рендериться нужная инфа 
             const planetShortInfo = <PlanetInfo>Climate: {climate} / Population: {population}</PlanetInfo>;
@@ -109,10 +109,6 @@ function ItemList({ getData, onItemSelected }) {
     const items = renderItems(onFilter(itemList, filter));
     const spinner = itemList.length === 0 ? <Spinner /> : null;
 
-    // const visiblePost = onFilter(itemList, filter);
-
-    // console.log(visiblePost);
-
     const dots = !res ? 
         <DotsBtn 
             getData={swService.getAllPages} 
@@ -130,7 +126,7 @@ function ItemList({ getData, onItemSelected }) {
                 <BackButton 
                     link='/planets' 
                     props={{position: 'relative', top: '-900px', left: '670px'}} />;
-    console.log(onItemSelected);
+
     return (
         <>
             <PlanetsTable className="item-list list-group">

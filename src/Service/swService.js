@@ -83,7 +83,8 @@ export default class SwService {
             diameter: this._isData(planet.diameter),
             orbital_period: this._isData(planet.orbital_period),
             gravity: this._isData(planet.gravity),
-            url: planet.url
+            url: planet.url,
+            residents: planet.residents
         }
     }
 
