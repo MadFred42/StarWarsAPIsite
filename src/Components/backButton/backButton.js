@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function BackButton({ link, props }) {
     
     return (
-        <a href={link} className='btn btn-danger' style={ props }>Back</a>
+        <Link to={link}>
+            <button className='btn btn-danger' style={props}>Back</button>
+        </Link>
     )
 }
 

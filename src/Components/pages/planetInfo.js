@@ -23,7 +23,7 @@ function PlanetInfo({ planetId }) {
     }, []);
 
     const link = <Link to={`/planets/${planetId}/residents`} className='btn btn-primary'>Residents</Link>;
-    const content = residents.length === 0 ? <ResInfo>No one live here, sorry...</ResInfo> : link;
+    const content = residents.length === 0 ? <ResInfo>No one lives here, sorry...</ResInfo> : link;
 
     return (
         <ItemInfo
