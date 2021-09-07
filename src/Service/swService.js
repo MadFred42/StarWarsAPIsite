@@ -6,6 +6,7 @@ export default class SwService {
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
 
+        
         if (!res.ok) {
             throw new Error(`Could not fetch ${url}, status:${res.status}`);
         }
@@ -13,21 +14,17 @@ export default class SwService {
         return await res.json();
     }
 
-    getAllPlanets = async (page) => {
-        const planets = await this.getResource(`planets/?page=${page}`);
-        const res = planets.results.map(this._transformPlanet);
-        return Promise.all(res).then(item => item);
-    }
-
-    getAllPages = async () => {
+    getAllPlanets = async () => {
         let i = 1;
-        while (true) {
-            const link = await this.getResource(`planets/?page=${i}`);
-            if (link.next === null) break; 
+        const newArr = [];
+        while (true) { 
+            const planets = await this.getResource(`planets/?page=${i}`);
+            newArr.push(planets.results);
+            if (planets.next === null) break;
             i++;
-        }    
-        
-        return i;
+        }
+        const res = newArr.flat().map(this._transformPlanet); 
+        return Promise.all(res).then(item => item);
     }
 
     getCharacter = async (id) => {

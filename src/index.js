@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import App from './Components/app';
-import 'bootstrap/dist/css/bootstrap.css';
+import App from './components/app';
 import store from './store';
-import ErrorBoundry from './Components/errorBoundry';
-import SwService from './Service/swService';
-import StarWarsServiceContext from './Components/service-context'
+import ErrorBoundry from './components/errorBoundry';
+import SwService from './service/swService';
+import StarWarsServiceContext from './components/service-context'
 
 const starWarsService = new SwService();
 

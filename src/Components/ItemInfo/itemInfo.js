@@ -1,20 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from '../spinner';
-import styled from 'styled-components';
-
-const PlanetDetail = styled.div`
-    align-self: center;
-    background-color: #fff;
-    padding: 25px 25px 15px 25px;
-    margin: auto;
-    width: 600px;
-    height: 600px;
-`;
-
-const Head = styled.h4`
-    margin-bottom: 20px;
-    text-align: center;
-`;
 
 const Field = ({planet, field, label }) => {
     return (
@@ -51,9 +36,9 @@ function ItemInfo ({ getData, itemId, children }) {
 
     return (
         
-        <PlanetDetail className="rounded">
+        <div className="rounded">
             {content}
-            <Head>{name}</Head>
+            <h4>{name}</h4>
             <ul className="list-group list-group-flush">
                 {
                     React.Children.map(children, (child) => {
@@ -61,7 +46,7 @@ function ItemInfo ({ getData, itemId, children }) {
                     })
                 }
             </ul>
-        </PlanetDetail>
+        </div>
     )
 }
 

@@ -3,11 +3,6 @@ import ItemInfo, { Field } from '../ItemInfo/itemInfo';
 import SwService from '../../Service/swService';
 import BackButton from '../backButton/backButton';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-const ResInfo = styled.h1`
-    margin: 0 auto;
-`;
 
 function PlanetInfo({ planetId }) {
 
@@ -23,7 +18,7 @@ function PlanetInfo({ planetId }) {
     }, []);
 
     const link = <Link to={`/planets/${planetId}/residents`} className='btn btn-primary'>Residents</Link>;
-    const content = residents.length === 0 ? <ResInfo>No one lives here, sorry...</ResInfo> : link;
+    const content = residents.length === 0 ? <h1>No one lives here, sorry...</h1> : link;
 
     return (
         <ItemInfo

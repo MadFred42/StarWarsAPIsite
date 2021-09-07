@@ -7,7 +7,7 @@ const WithStarWarsService = () => (Wrapper) => {
             <StarWarsServiceContext.Consumer>
                 {
                     (starWarsService) => {
-                        <Wrapper {...props} service={starWarsService} />
+                        return <Wrapper {...props} service={starWarsService} />
                     }
                 }
             </StarWarsServiceContext.Consumer>

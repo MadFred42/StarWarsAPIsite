@@ -1,19 +1,16 @@
 {
-  "name": "gotapp",
+  "name": "resto",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^5.0.1",
-    "http-server": "^0.12.3",
-    "node-sass": "^6.0.1",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "reactstrap": "^8.9.0",
-    "styled-components": "^5.3.0",
-    "swapi-node": "^0.6.0"
+    "redux": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,14 +21,16 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "react-redux": "^7.2.5",
-    "redux": "^4.1.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
