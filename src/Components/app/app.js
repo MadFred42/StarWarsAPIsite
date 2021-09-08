@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { ResidentsPage, MainPage } from '../pages';
 import img from './SWbackground.jpg'
 
-const App = ({ planetId }) => {
+const App = () => {
     return (
         <div 
         style={{height: '100%', backgroundImage: `url(${img})`, backgroundAttachment: 'fixed'}}>
