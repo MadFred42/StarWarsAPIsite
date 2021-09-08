@@ -27,37 +27,18 @@ export default class SwService {
         return Promise.all(res).then(item => item);
     }
 
-    getCharacter = async (id) => {
-        const pers = await this.getResource(`people/${id}/`);
-        return this._transformChar(pers)
-    }
-
-    getPlanet = async (id) => {
-        const planet = await this.getResource(`planets/${id}/`);
-        return this._transformPlanet(planet);
-    }
-
-    getResidents = async (id) => {
-        console.log(id);
-        const planet = await (await fetch(`${this._apiBase}planets/${id}`)).json();
-        const res = planet.residents.map(async (item) => {
-            const link = await (await fetch(item)).json();
-            
-            const res = this._transformChar(link);
-            
-            return res;
-        });
+    getResidents = async (arr) => {
+        const residents = arr.map(async (item) => {
+            const res = await (await fetch(item)).json();
+            return this._transformResident(res);
+        })
         
-        return Promise.all(res).then(item => item);
-    } 
-
-    getImage = async (name) => {
-        const img = await fetch(`../img/${name}`);
-        return img;
-    }    
+        return Promise.all(residents).then(item => item);
+    }   
 
     _getId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
+        
         return item.url.match(idRegExp)[1];
     }
 
@@ -78,14 +59,14 @@ export default class SwService {
             climate: this._isData(planet.climate),
             population: this._isData(planet.population),
             diameter: this._isData(planet.diameter),
-            orbital_period: this._isData(planet.orbital_period),
+            terrain: this._isData(planet.terrain),
             gravity: this._isData(planet.gravity),
             url: planet.url,
             residents: planet.residents
         }
     }
 
-    _transformChar = (char) => {
+    _transformResident = (char) => {
         return {
             id: this._getId(char),
             name: char.name,

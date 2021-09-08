@@ -12,7 +12,31 @@ const filterItems = (filter) => {
     }
 }
 
+const getPlanet = (data) => {
+    return {
+        type: 'GET_PLANET',
+        payload: data
+    }
+}
+
+const getPlanetId = (id) => {
+    return {
+        type: 'GET_PLANET_ID',
+        payload: id
+    }
+}
+
+const getPlanetResidents = (data) => {
+    return {
+        type: 'GET_PLANET_RESIDENTS',
+        payload: data
+    }
+}
+
 export {
     planetLoaded,
-    filterItems
+    filterItems,
+    getPlanet,
+    getPlanetId,
+    getPlanetResidents
 }
