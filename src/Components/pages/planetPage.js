@@ -1,10 +1,10 @@
 import React  from 'react';
-import ItemList from '../itemList/itemList';
+import ItemInfo from '../itemInfo';
 
-function PlanetPage() {
-    
+function PlanetPage({match}) {
+    const {id} = match.params;
     return (
-        <ItemList className="item-list list-group" />
+        <ItemInfo id={id} />
     )
 }
 
