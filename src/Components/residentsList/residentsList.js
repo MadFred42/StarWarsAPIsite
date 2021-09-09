@@ -2,21 +2,21 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getPlanetResidents } from '../../actions';
 import WithStarWarsService from '../hoc';
+import Spinner from '../spinner';
 
 import './residentList.css'
 
-const ResidentsList = ({ getPlanetResidents, planet, planetId, residents, service }) => {
-    console.log(planet);
-    const planetResidents = planet.map(item => item.residents).flat();
-    console.log(planetId);
+const ResidentsList = ({ getPlanetResidents, loading, planet, residents, service }) => {
+    
     useEffect(() => {
-        service.getResidents(planetResidents)
+        service.getResidents(planet.residents)
             .then(item => getPlanetResidents(item))
             .catch(err => console.log(err));
-    }, [planetId]);
+    }, []);
 
     return (
         <div className='d-flex flex-wrap' style={{alignItems: 'center', height: '900px'}}>
+            {loading ? <Spinner /> : null}
             {
                 residents.map(item => {
                     const {
@@ -48,8 +48,9 @@ const ResidentsList = ({ getPlanetResidents, planet, planetId, residents, servic
     )
 };
 
-const mapStateToProps = ({ planet, planetId, residents }) => {
+const mapStateToProps = ({ loading, planet, planetId, residents }) => {
     return {
+        loading,
         planet,
         planetId,
         residents

@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import WithStarWarsService from '../hoc';
-import { getPlanet, getPlanetId, planetLoaded } from '../../actions';
+import { getPlanet, planetLoaded } from '../../actions';
 import Spinner from '../spinner'
-import { Link } from 'react-router-dom';
 import ResidentsButton from '../residentsButton';
 
 import './planetList.css'
 
-const PlanetList = ({ getPlanet, getPlanetId, planetLoaded, planets, loading, service }) => {
+const PlanetList = ({ planetLoaded, planets, loading, service }) => {
     
     useEffect(() => {
         service.getAllPlanets()
@@ -24,7 +23,6 @@ const PlanetList = ({ getPlanet, getPlanetId, planetLoaded, planets, loading, se
                     const {
                         climate, diameter, gravity, id, name, population, terrain 
                     } = item;
-                    getPlanetId(id);
                     return (
                         <div 
                         key={id} 
@@ -39,7 +37,7 @@ const PlanetList = ({ getPlanet, getPlanetId, planetLoaded, planets, loading, se
                                     <li>Diameter: {diameter}</li>
                                     <li>Terrain: {terrain}</li>
                                 </ul>
-                                <ResidentsButton name={name} />                           
+                                <ResidentsButton name={name} planet={item} />                           
                             </div>
                         </div>
                     )
@@ -59,7 +57,6 @@ const mapStateToProps = ({ planets, filter, loading }) => {
 
 const mapDispatchToProps = {
     getPlanet,
-    getPlanetId,
     planetLoaded
 }
 

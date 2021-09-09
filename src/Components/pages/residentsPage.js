@@ -1,10 +1,14 @@
 import React from 'react';
-import ResidentsList from '../residentsList/residentsList';
+import BackButton from '../backButton';
+import ResidentsList from '../residentsList';
 
 function ResidentsPage() {
     
     return (
-        <ResidentsList />
+        <div>
+            <BackButton />
+            <ResidentsList />
+        </div>
     )
 }
 

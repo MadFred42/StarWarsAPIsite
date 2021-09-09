@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function BackButton({ link, props }) {
+function BackButton() {
     
     return (
-        <Link to={link}>
-            <button className='btn btn-danger' style={props}>Back</button>
+        <Link to='/'>
+            <button className='btn btn-danger' style={{margin: '10px 50px', width: '150px'}}>Back</button>
         </Link>
     )
 }

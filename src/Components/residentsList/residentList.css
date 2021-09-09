@@ -3,18 +3,15 @@
 }
 
 .planets :hover {
-    background: rgba(0, 0, 0, 0);
+    background: rgba(2, 2, 2, 0);
     color: #3a7999;
     box-shadow: inset 0 0 0 3px #3a7999;
     border-radius: 30px;
 }
 
-.planets :hover ul {
+.planets :hover button ul {
     display: block;
-}
-
-.planets :hover button {
-    display: block;
+    transition-delay: 1s;
 }
 
 .sibs {

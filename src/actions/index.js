@@ -19,13 +19,6 @@ const getPlanet = (data) => {
     }
 }
 
-const getPlanetId = (id) => {
-    return {
-        type: 'GET_PLANET_ID',
-        payload: id
-    }
-}
-
 const getPlanetResidents = (data) => {
     return {
         type: 'GET_PLANET_RESIDENTS',
@@ -37,6 +30,5 @@ export {
     planetLoaded,
     filterItems,
     getPlanet,
-    getPlanetId,
     getPlanetResidents
 }
