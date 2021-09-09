@@ -1,6 +1,7 @@
 const initialState = {
     residents: [],
-    filter: 'all',
+    filterActive: 'all',
+    filteredResidents: [],
     loading: true,
     planet: [],
     planets: [],
@@ -18,13 +19,24 @@ const reducer = (state = initialState, action) => {
                 loading: false
             };
         case 'FILTER_ITEMS':
+            const filteredByGender = state.residents.filter(item => item.gender === action.payload);
+            console.log(action.payload);
+            if (action.payload === 'all') {
+
+                return {
+                    ...state,
+                    filterActive: action.payload,
+                    filteredResidents: state.residents
+                }
+            }
 
             return {
                 ...state,
-                filter: action.payload
+                filterActive: action.payload,
+                filteredResidents: filteredByGender
             };
         case 'GET_PLANET':
-
+            console.log(state.filteredResidents);
             return {
                 ...state,
                 loading: true,
@@ -34,8 +46,18 @@ const reducer = (state = initialState, action) => {
             
             return {
                 ...state,
+                filteredResidents: action.payload,
                 loading: false,
                 residents: action.payload
+            }
+        case 'GO_BACK':
+            const newArr = state.filteredResidents.slice(0, -0)
+            console.log(state.filteredResidents);
+            console.log(newArr);
+            return {
+                ...state,
+                filterActive: 'all',
+                filteredResidents: newArr
             }
         default:
 

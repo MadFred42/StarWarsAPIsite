@@ -6,19 +6,28 @@ import Spinner from '../spinner';
 
 import './residentList.css'
 
-const ResidentsList = ({ getPlanetResidents, loading, planet, residents, service }) => {
-    
+const ResidentsList = ({ getPlanetResidents, loading, planet, filteredResidents, service }) => {
+    console.log(filteredResidents);
     useEffect(() => {
         service.getResidents(planet.residents)
-            .then(item => getPlanetResidents(item))
+            .then(item => {getPlanetResidents(item); console.log(item)})
             .catch(err => console.log(err));
-    }, []);
+    }, [planet]);
+
+    
 
     return (
-        <div className='d-flex flex-wrap' style={{alignItems: 'center', height: '900px'}}>
+        <div className='d-flex flex-wrap' style={{alignItems: 'flex-start', height: '900px', margin: '50px'}}>
             {loading ? <Spinner /> : null}
             {
-                residents.map(item => {
+                (filteredResidents.length === 0 && !loading) ? 
+                    <div style={{color: 'white', fontSize: '50px'}}>
+                        Sorry, but nobody lives here...
+                    </div> : 
+                null
+            }
+            {    
+                filteredResidents.map(item => {
                     const {
                         birth_year, eye_color, gender, hair_color, height, id, mass, name, skin_color
                     } = item;
@@ -48,12 +57,12 @@ const ResidentsList = ({ getPlanetResidents, loading, planet, residents, service
     )
 };
 
-const mapStateToProps = ({ loading, planet, planetId, residents }) => {
+const mapStateToProps = ({ loading, planet, planetId, filteredResidents }) => {
     return {
         loading,
         planet,
         planetId,
-        residents
+        filteredResidents
     }
 }
 

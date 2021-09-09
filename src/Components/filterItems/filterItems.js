@@ -1,38 +1,45 @@
 import React from 'react';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { filterItems } from '../../actions';
 
-const FilterBtn = styled.button`
-    position: relative;
-    top: -1000px;
-    left: 600px
-`;
 
-function FilterItems({ filter, onUpdateFilter }) {
+function FilterItems({ filterActive, filterItems }) {
     
     const buttons = [
         {name: 'all', label: 'All'},
-        {name: 'males', label: 'Males'},
-        {name: 'females', label: 'Females'}
+        {name: 'male', label: 'Males'},
+        {name: 'female', label: 'Females'}
     ];
 
-    const content = buttons.map(({name, label}) => {
-        const active = filter === name;
-        const clss = active ? 'btn-info' : 'btn-secondary';
+    const content = buttons.map(({ name, label }) => {
+        const active = filterActive === name;
+        const classTag = active ? 'btn-info' : 'btn-secondary';
 
         return (    
-            <FilterBtn
+            <button
                 key = {name}
-                className={`btn ${clss}`}
-                onClick={() => onUpdateFilter(name)}>
-                    {label}</FilterBtn>
+                className={`btn ${classTag}`}
+                onClick={() => filterItems(name)}>
+                    {label}</button>
         )
     })
 
     return (
-        <div className="align-items-center d-flex">
+        <div className="align-items-center d-flex" style={{position: 'absolute', top: '10px', right: '100px'}}>
             {content}
         </div>
     )
 }
 
-export default FilterItems;
+const mapStateToProps = ({ filterActive, residents }) => {
+    return {
+        filterActive,
+        residents
+    }
+}
+
+const mapDispatchToProps = {
+    filterItems
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterItems);
